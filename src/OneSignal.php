@@ -5,20 +5,16 @@ namespace OneSignal;
 use GuzzleHttp;
 use onesignal\client\api\DefaultApi;
 use onesignal\client\Configuration;
-use Dotenv\Dotenv;
-
-$dotenv = Dotenv::createImmutable(__DIR__ . '/../../../');
-$dotenv->load();
 
 class OneSignal
 {
   public $onesignalClient;
 
-  function __construct()
+  function __construct($rest_api_key, $user_auth_key)
   {
     $config = Configuration::getDefaultConfiguration()
-      ->setAppKeyToken($_ENV["REST_API_KEY"])
-      ->setUserKeyToken($_ENV["USER_AUTH_KEY"]);
+      ->setAppKeyToken($rest_api_key)
+      ->setUserKeyToken($user_auth_key);
 
     $this->onesignalClient = new DefaultApi(
       new GuzzleHttp\Client(),
@@ -32,7 +28,7 @@ class OneSignal
     $appArray = [];
 
     foreach ($this->onesignalClient->getApps() as &$app) {
-      array_push($appArray,[$app['name'], $app['id']]);
+      array_push($appArray, [$app['name'], $app['id']]);
     }
 
     return $appArray;
