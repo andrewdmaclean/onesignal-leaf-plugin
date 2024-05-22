@@ -2,7 +2,7 @@
   "name": "onesignal/onesignal-leaf",
   "type": "library",
   "require": {
-    "OneSignal/onesignal-php-api": "*@dev"
+    "onesignal/onesignal-php-api": "*@dev"
   },
   "autoload": {
     "psr-4": {
@@ -10,4 +10,3 @@
     }
   }
 }
-
