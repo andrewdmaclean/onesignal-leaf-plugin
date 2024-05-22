@@ -1,4 +1,13 @@
 {
   "name": "onesignal/onesignal-leaf",
-  "type": "library"
+  "type": "library",
+  "require": {
+    "OneSignal/onesignal-php-api": "*@dev"
+  },
+  "autoload": {
+    "psr-4": {
+      "OneSignal\\": "src"
+    }
+  }
 }
+
