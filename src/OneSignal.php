@@ -24,7 +24,6 @@ class OneSignal
 
   function viewApps()
   {
-
     $appArray = [];
 
     foreach ($this->onesignalClient->getApps() as &$app) {
@@ -34,11 +33,8 @@ class OneSignal
     return $appArray;
   }
 
-
-
-
-  public static function ping()
+  function getClient()
   {
-    return "Pong!";
+    return $this->onesignalClient;
   }
 }
