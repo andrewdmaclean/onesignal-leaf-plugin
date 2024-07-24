@@ -8,33 +8,22 @@ use onesignal\client\Configuration;
 
 class OneSignal
 {
-  public $onesignalClient;
+    public $onesignalClient;
 
-  function __construct($rest_api_key, $user_auth_key)
-  {
-    $config = Configuration::getDefaultConfiguration()
-      ->setAppKeyToken($rest_api_key)
-      ->setUserKeyToken($user_auth_key);
+    function __construct($rest_api_key, $user_auth_key)
+    {
+        $config = Configuration::getDefaultConfiguration()
+            ->setAppKeyToken($rest_api_key)
+            ->setUserKeyToken($user_auth_key);
 
-    $this->onesignalClient = new DefaultApi(
-      new GuzzleHttp\Client(),
-      $config
-    );
-  }
-
-  function viewApps()
-  {
-    $appArray = [];
-
-    foreach ($this->onesignalClient->getApps() as &$app) {
-      array_push($appArray, [$app['name'], $app['id']]);
+        $this->onesignalClient = new DefaultApi(
+            new GuzzleHttp\Client(),
+            $config
+        );
     }
 
-    return $appArray;
-  }
-
-  function getClient()
-  {
-    return $this->onesignalClient;
-  }
+    function getOneSignalClient()
+    {
+        return $this->onesignalClient;
+    }
 }
